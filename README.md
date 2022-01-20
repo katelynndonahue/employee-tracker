@@ -3,7 +3,7 @@
 An database application used to track employees by name, id number, position, salary and status.
 - This application enhances the productivity of leadership for efficiency. 
 - This project was built to give leadership a user friendly database that stores all of the necessary employee information.
-- I learned how to better navigate SQL.
+- Through the development of this application, I learned how to better navigate SQL.
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)

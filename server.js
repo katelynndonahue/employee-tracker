@@ -1,30 +1,25 @@
 const express = require('express');
-// Import and require mysql2
 const mysql = require('mysql2');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to database
+
 const db = mysql.createConnection(
   {
     host: 'localhost',
-    // MySQL username,
     user: 'root',
-    // MySQL password
-    password: 'rootRoot',
+    password: 'rootROOT',
     database: 'courses_db'
   },
-  console.log(`Connected to the courses_db database.`)
+  console.log(`Connected to the employee_db database.`)
 );
 
-// Hardcoded query: DELETE FROM course_names WHERE id = 3;
 
-db.query(`DELETE FROM course_names WHERE id = 3`, 3, (err, result) => {
+db.query(`DELETE FROM employee_names WHERE id = 3`, 3, (err, result) => {
   if (err) {
     console.log(err);
   }
@@ -32,14 +27,12 @@ db.query(`DELETE FROM course_names WHERE id = 3`, 3, (err, result) => {
 });
 
 
-// Query database
 
 
-db.query('SELECT * FROM course_names', function (err, results) {
+db.query('SELECT * FROM employee_names', function (err, results) {
   console.log(results);
 });
 
-// Default response for any other request (Not Found)
 app.use((req, res) => {
   res.status(404).end();
 });
