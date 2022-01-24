@@ -10,7 +10,7 @@ function init() {
       type: "list",
       message: "Please choose an action from list below?",
       name: "options",
-      choices:["Create Department",""]
+      choices:["Create Department","Add New Employee", "Remove Employee"]
     }
   ]).then(function(res){
     switch (res.options) {
@@ -19,6 +19,26 @@ function init() {
       case "":
         return ;
       default:
+        break;
+    }
+  })
+  .then(function(res){
+    switch (res.options) {
+      case "Add New Employee":
+        return createEmployee();
+      case "":
+        return "New Employee Created"
+      default: "New Employee Created"
+        break;
+    }
+  })
+  .then(function(res){
+    switch (res.options) {
+      case "Remove Employee":
+        return createEmployee();
+      case "":
+        return "Remove Employee"
+      default: "Remove Employee"
         break;
     }
   })
