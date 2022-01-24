@@ -1,31 +1,32 @@
-const express = require('express');
-const mysql = require('mysql2');
-const PORT = process.env.PORT || 3001;
-const app = express();
+const inquirer = require('inquirer');
+const { listenerCount } = require('./db/connection');
+require('console.table');
+const db = require('./db/db');
 
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+function init() {
+  inquirer.prompt([
+    {
+      type: "list",
+      message: "Please choose an action from list below?",
+      name: "options",
+      choices:["Create Department",""]
+    }
+  ]).then(function(res){
+    switch (res.options) {
+      case "Create Department":
+        return createDepartment();
+      case "":
+        return ;
+      default:
+        break;
+    }
+  })
+}
+
+init();
 
 
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    user: 'root',
-    password: 'rootROOT',
-    database: 'employee_db'
-  },
-  console.log(`Connected to the employee_db database.`)
-);
-
-db.query('SELECT * FROM employee_db', function (err, results) {
-  console.log(results);
-});
-
-app.use((req, res) => {
-  res.status(404).end();
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+function createDepartment(){
+  console.log("working on it")
+}
