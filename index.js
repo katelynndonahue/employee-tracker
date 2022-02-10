@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const { listenerCount } = require('./db/connection');
 require('console.table');
-const db = require('./db/db');
+const db = require('./db/connection');
 
 
 function init() {
