@@ -1,8 +1,12 @@
 const inquirer = require('inquirer');
 const { listenerCount } = require('./db/connection');
-require('console.table');
+const table = ('console.table');
 const db = require('./db/connection');
 
+const depts = [];
+const roles = [];
+const managers = [];
+const employees = [];
 
 function init() {
   inquirer.prompt([
@@ -45,7 +49,6 @@ function init() {
 }
 
 init();
-
 
 function createDepartment(){
   console.log("working on it")
