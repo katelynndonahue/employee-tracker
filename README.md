@@ -13,7 +13,7 @@ An database application used to track employees by name, id number, position, sa
 I began by creating a uniquely named repository on GitHub. I cloned the SSH key to my local terminal and began to work locally, starting with creating my initial file structure.
 ## Usage
     ```md
-    ![screen shot](assets/images/)
+    ![screen shot](./images/employeeManagementScreenShot.png)
     ```
 ## Credits
 https://www.bootcampspot.com/sessions/1984734/videos/151858

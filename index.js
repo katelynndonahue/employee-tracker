@@ -1,60 +1,59 @@
-const inquirer = require('inquirer');
-const { listenerCount } = require('./db/connection');
-const table = ('console.table');
-const db = require('./db/connection');
-
-const depts = [];
-const roles = [];
-const managers = [];
-const employees = [];
+const inquirer = require("inquirer");
+const { findAllRoles } = require("./db/index");
+require("console.table");
+const db = require("./db/index");
 
 function init() {
-  inquirer.prompt([
-    {
-      type: "list",
-      message: "Please choose an action from list below?",
-      name: "options",
-      choices:["Create Department","Add New Employee", "Remove Employee"]
-    }
-  ]).then(function(res){
-    switch (res.options) {
-      case "Create Department":
-        return createDepartment();
-      case "":
-        return ;
-      default:
-        break;
-    }
-  })
-  .then(function(res){
-    switch (res.options) {
-      case "Add New Employee":
-        return createEmployee();
-      case "":
-        return "New Employee Created"
-      default: "New Employee Created"
-        break;
-    }
-  })
-  .then(function(res){
-    switch (res.options) {
-      case "Remove Employee":
-        return createEmployee();
-      case "":
-        return "Remove Employee"
-      default: "Remove Employee"
-        break;
-    }
-  })
-
-// View all employees function 
-viewEmployees() { db.findAllEmployees() .then(([rows]) => { let employees = rows; console.log("\n"); console.table (employees); }) .then(() => loadMainPrompts()); 
-}
-
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Please choose an action from list below?",
+        name: "options",
+        choices: ["Show all Employees", "Show all Roles", "Create Department", "Add New Employee", "Remove Employee", "EXIT"],
+      },
+    ])
+    .then(function (res) {
+      switch (res.options) {
+        case "Show all Employees":
+          return allEmployees();
+        case "Show all Roles":
+          return allRoles();
+        case "Show all Departments":
+        return allDepartments();
+        case "EXIT":
+          return leaveApp();
+      }
+    })
 }
 
 init();
 
-function createDepartment(){
-  console.log("working on it")
+async function allEmployees(params) {
+  const employees = await db.findAllEmployees();
+
+  console.log("\n")
+  console.table(employees);
+
+  init();
+}
+
+async function allRoles(){
+  const roles = await db.findAllRoles();
+
+  console.log("\n")
+  console.table(roles);
+
+  init();
+}
+async function allDepartments(){
+  const roles = await db.findAllDepartments();
+
+  console.log("\n")
+  console.table(departments);
+
+  init();
+}
+function leaveApp(){
+  process.exit();
 }
